@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="qwestion">
+<head>
+  <meta charset="UTF-8">
+  <title>Qwestion</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-size: 18px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 5px;
+    }
+    h1 {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    a, a:hover, a:visited, a:active {
+      color: #fff;
+      text-decoration: none;
+    }
+    .name {
+      background-color: transparent;
+      border: 0;
+    }
+  </style>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="questionCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1>Ask a Question</h1>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <input class="name" type="text" placeholder="Enter Your Name..." ng-model="name">
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="questionObj in questions">
+                <strong>{{ questionObj.question }}</strong> - {{ questionObj.user }}
+                <a class="badge" href="" ng-click="questions.$remove(questionObj)">x</a>
+              </li>
+          </div>
+          <div class="panel-footer">
+            <textarea type="text" placeholder="Type Your Question..." ng-model="body"></textarea>
+            <button ng-click="addQuestion()">Submit Question</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
